@@ -27,13 +27,6 @@ namespace GameJam.source
         {
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            foreach(Entity entity in entities)
-            {
-                if(Helpers.CollisionCheck(body, entity.body) && entity != this)
-                {
-                    Console.WriteLine("It's a hit!");
-                }
-            }
         }
 
         public override void Draw()

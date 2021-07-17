@@ -10,7 +10,6 @@ namespace GameJam.source
 {
     public class World
     {
-
         public World()
         {
 
@@ -18,24 +17,17 @@ namespace GameJam.source
 
         public virtual void LoadContent()
         {
-            for(int i = 1; i <= 2; i++)
-                Entity.entities.Add(new Entity("1", new Vector2(50 * i, 100), 2, 0));
+            BlackBarTrans.TransIn();
         }
 
         public virtual void Update(GameTime gameTime)
         {
-            foreach(Entity entity in Entity.entities)
-            {
-                entity.Update(gameTime);
-            }
+            BlackBarTrans.Update(gameTime);
         }
 
         public virtual void Draw()
         {
-            foreach (Entity entity in Entity.entities)
-            {
-                entity.Draw();
-            }
+            BlackBarTrans.Draw();
         }
     }
 }
