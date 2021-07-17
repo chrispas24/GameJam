@@ -16,7 +16,7 @@ namespace GameJam.source
         public int scale;
         public Texture2D texture;
         public static Texture2D pixel = Globals.content.Load<Texture2D>("debugRect");
-
+        public SpriteFont debugFont = Globals.content.Load<SpriteFont>("galleryFont");
         public Sprite(string path, Vector2 pos, int dim, float rot)
         {
             position = pos;

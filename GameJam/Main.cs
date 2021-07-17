@@ -8,6 +8,7 @@ using GameJam.source;
 using Apos.Input;
 using Track = Apos.Input.Track;
 using MonoGame.Extended.Tweening;
+
 namespace GameJam
 {
     public class Main : Game
@@ -20,6 +21,7 @@ namespace GameJam
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
         }
 
         protected override void Initialize()
@@ -73,7 +75,7 @@ namespace GameJam
             GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
 
             // Draw the scene
-            GraphicsDevice.Clear(Color.AntiqueWhite);
+            GraphicsDevice.Clear(Color.SkyBlue);
 
             Globals.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,
                         SamplerState.PointClamp);

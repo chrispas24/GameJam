@@ -17,5 +17,7 @@ namespace GameJam
             }
             return false;
         }
+
+        public static Random random = new Random();
     }
 }

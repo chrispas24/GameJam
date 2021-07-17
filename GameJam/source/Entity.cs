@@ -29,11 +29,5 @@ namespace GameJam.source
 
         }
 
-        public override void Draw()
-        {
-            base.Draw();
-            foreach (Entity entity in entities) if (Helpers.CollisionCheck(body, entity.body) && entity != this) Globals.spriteBatch.Draw(pixel, body, Color.Black);
-
-        }
     }
 }

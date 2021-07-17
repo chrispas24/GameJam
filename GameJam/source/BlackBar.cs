@@ -12,28 +12,29 @@ namespace GameJam.source
     class BlackBar : Sprite
     {
         public bool top = true;
+        public bool leaving = false;
         public static List<BlackBar> blackBars = new List<BlackBar>();
-
         public BlackBar(string path, Vector2 pos, int dim, float rot, bool _top) :base(path, pos, dim, rot)
         {
             top = _top;
+
             if (top)
             {
-                 Globals.tweener.TweenTo(target: this, expression: entity => entity.position, toValue: new Vector2(position.X, position.Y + 30), duration: 2f, delay: 0)
-                    .Easing(EasingFunctions.CubicOut);
+                 Globals.tweener.TweenTo(target: this, expression: entity => entity.position, toValue: new Vector2(position.X, position.Y + 30), duration: .75f, delay: .5f)
+                    .Easing(EasingFunctions.BounceOut);
             }
             else
             {
-                Globals.tweener.TweenTo(target: this, expression: entity => entity.position, toValue: new Vector2(position.X, position.Y - 30), duration: 2f, delay: 0)
-                    .Easing(EasingFunctions.CubicOut);
+                Globals.tweener.TweenTo(target: this, expression: entity => entity.position, toValue: new Vector2(position.X, position.Y - 30), duration: .75f, delay: .5f)
+                    .Easing(EasingFunctions.BounceOut);
             }
         }
 
+
         public override void Update(GameTime gameTime)
         {
-            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
             base.Update(gameTime);
-            Globals.tweener.Update(dt);
+
         }
 
         public override void Draw()
