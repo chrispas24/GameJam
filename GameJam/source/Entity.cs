@@ -16,26 +16,31 @@ namespace GameJam.source
     {
         public static List<Entity> entities = new List<Entity>();
         public Vector2 physPosition;
+        public Rectangle body;
         public Entity(string path, Vector2 position, int _dim, float rot) : base(path, position, _dim, rot)
         {
-            physPosition = new Vector2(position.X / 2, position.Y / 1.5f);
+            physPosition = new Vector2(position.X + texture.Width / 2, position.Y + texture.Height / 2);
+            body = new Rectangle((int)position.X, (int)position.Y, texture.Width * scale, texture.Height * scale);
         }
 
         public override void Update(GameTime gameTime)
         {
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (KeyboardCondition.Pressed(Keys.Space))
-            {
-                Globals.tweener.TweenTo(target: this, expression: entity => entity.position, toValue: new Vector2(position.X, position.Y + 200), duration: 1f, delay: 0)
-                    .Easing(EasingFunctions.BounceOut);
 
+            foreach(Entity entity in entities)
+            {
+                if(Helpers.CollisionCheck(body, entity.body) && entity != this)
+                {
+                    Console.WriteLine("It's a hit!");
+                }
             }
-            
         }
 
         public override void Draw()
         {
             base.Draw();
+            foreach (Entity entity in entities) if (Helpers.CollisionCheck(body, entity.body) && entity != this) Globals.spriteBatch.Draw(pixel, body, Color.Black);
+
         }
     }
 }

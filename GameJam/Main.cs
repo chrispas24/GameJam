@@ -14,6 +14,7 @@ namespace GameJam
     {
         private GraphicsDeviceManager _graphics;
         World testWorld;
+        RenderTarget2D renderTarget;
         public Main()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -27,6 +28,13 @@ namespace GameJam
             _graphics.PreferredBackBufferHeight = 720;
             _graphics.ApplyChanges();
 
+            renderTarget = new RenderTarget2D(
+                GraphicsDevice,
+                426,
+                240,
+                false,
+                GraphicsDevice.PresentationParameters.BackBufferFormat,
+                DepthFormat.Depth24);
 
             base.Initialize();
         }
@@ -57,16 +65,33 @@ namespace GameJam
             InputHelper.UpdateCleanup();
         }
 
-
-        protected override void Draw(GameTime gameTime)
+        protected void DrawSceneToTexture(RenderTarget2D renderTarget)
         {
+            // Set the render target
+            GraphicsDevice.SetRenderTarget(renderTarget);
 
+            GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
+
+            // Draw the scene
             GraphicsDevice.Clear(Color.AntiqueWhite);
 
             Globals.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,
                         SamplerState.PointClamp);
             testWorld.Draw();
+            Globals.spriteBatch.End();
+            // Drop the render target
+            GraphicsDevice.SetRenderTarget(null);
+        }
 
+        protected override void Draw(GameTime gameTime)
+        {
+            DrawSceneToTexture(renderTarget);
+            GraphicsDevice.Clear(Color.Black);
+
+            Globals.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,
+                        SamplerState.PointClamp);
+
+            Globals.spriteBatch.Draw(renderTarget, new Rectangle(0, 0, 1280, 720), Color.White);
             
 
             Globals.spriteBatch.End();

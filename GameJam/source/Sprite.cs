@@ -15,6 +15,7 @@ namespace GameJam.source
         public float rotation;
         public int scale;
         public Texture2D texture;
+        public static Texture2D pixel = Globals.content.Load<Texture2D>("debugRect");
 
         public Sprite(string path, Vector2 pos, int dim, float rot)
         {
@@ -31,7 +32,7 @@ namespace GameJam.source
 
         public virtual void Draw()
         {
-            Globals.spriteBatch.Draw(texture, new Rectangle((int)(position.X), (int)position.Y, (int)texture.Width * scale, (int)texture.Height * scale), null, Color.White, rotation, new Vector2(texture.Bounds.Width / 2, texture.Bounds.Height / 1.5f), new SpriteEffects(), 0);
+            Globals.spriteBatch.Draw(texture, new Rectangle((int)(position.X), (int)position.Y, (int)texture.Width * scale, (int)texture.Height * scale), Color.White);
         }
     }
 }

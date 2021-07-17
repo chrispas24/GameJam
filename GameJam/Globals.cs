@@ -15,5 +15,6 @@ namespace GameJam
         public static ContentManager content;
         public static SpriteBatch spriteBatch;
         public static Tweener tweener = new Tweener();
+        
     }
 }

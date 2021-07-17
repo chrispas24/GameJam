@@ -18,8 +18,8 @@ namespace GameJam.source
 
         public virtual void LoadContent()
         {
-            for(int i = 1; i <= 20; i++)
-                Entity.entities.Add(new Entity("1", new Vector2(60 * i, 100), 2, 0));
+            for(int i = 1; i <= 2; i++)
+                Entity.entities.Add(new Entity("1", new Vector2(50 * i, 100), 2, 0));
         }
 
         public virtual void Update(GameTime gameTime)
