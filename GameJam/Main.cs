@@ -26,8 +26,9 @@ namespace GameJam
 
         protected override void Initialize()
         {
-            _graphics.PreferredBackBufferWidth = 1280;
-            _graphics.PreferredBackBufferHeight = 720;
+            _graphics.PreferredBackBufferWidth = 1920;
+            _graphics.PreferredBackBufferHeight = 1080;
+            _graphics.IsFullScreen = false;
             _graphics.ApplyChanges();
 
             renderTarget = new RenderTarget2D(
@@ -75,7 +76,7 @@ namespace GameJam
             GraphicsDevice.DepthStencilState = new DepthStencilState() { DepthBufferEnable = true };
 
             // Draw the scene
-            GraphicsDevice.Clear(Color.SkyBlue);
+            GraphicsDevice.Clear(Color.LightSkyBlue);
 
             Globals.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,
                         SamplerState.PointClamp);
@@ -93,7 +94,7 @@ namespace GameJam
             Globals.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend,
                         SamplerState.PointClamp);
 
-            Globals.spriteBatch.Draw(renderTarget, new Rectangle(0, 0, 1280, 720), Color.White);
+            Globals.spriteBatch.Draw(renderTarget, new Rectangle(0, 0, 1920, 1080), Color.White);
             
 
             Globals.spriteBatch.End();

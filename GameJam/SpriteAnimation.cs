@@ -15,8 +15,9 @@ namespace RPG
         protected Rectangle[] Rectangles;
         protected int FrameIndex = 0;
 
-        public SpriteManager(Texture2D Texture, int frames)
+        public SpriteManager(Texture2D Texture, int frames, float scale)
         {
+            Scale = scale;
             this.Texture = Texture;
             int width = Texture.Width / frames;
             Rectangles = new Rectangle[frames];
@@ -38,7 +39,7 @@ namespace RPG
         private float timeToUpdate; //default, you may have to change it
         public int FramesPerSecond { set { timeToUpdate = (1f / value); } }
 
-        public SpriteAnimation(Texture2D Texture, int frames, int fps) : base(Texture, frames) {
+        public SpriteAnimation(Texture2D Texture, int frames, int fps, float scale) : base(Texture, frames, scale) {
             FramesPerSecond = fps;
         }
 

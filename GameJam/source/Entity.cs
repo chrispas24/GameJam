@@ -25,9 +25,12 @@ namespace GameJam.source
 
         public override void Update(GameTime gameTime)
         {
-            float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
         }
 
+        public override void Draw()
+        {
+            base.Draw();
+        }
     }
 }
